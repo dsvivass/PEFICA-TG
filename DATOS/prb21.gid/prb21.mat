@@ -1,0 +1,20 @@
+NUMBER: 1 MATERIAL: Steel
+QUESTION: Modulo_Young_(EYOU)
+VALUE: 200E+6
+QUESTION: Esfuerzo_Fluencia(STFY)
+VALUE: 0.0
+QUESTION: Modulo_Tangente(ETAN)
+VALUE: 0.0
+QUESTION: Area_sec_trans_(AREA)
+VALUE: 0.001
+END MATERIAL
+NUMBER: 2 MATERIAL: vigas
+QUESTION: Modulo_Young_(EYOU)
+VALUE: 200E+6
+QUESTION: Esfuerzo_Fluencia(STFY)
+VALUE: 0.0
+QUESTION: Modulo_Tangente(ETAN)
+VALUE: 0.0
+QUESTION: Area_sec_trans_(AREA)
+VALUE: 0.005
+END MATERIAL
