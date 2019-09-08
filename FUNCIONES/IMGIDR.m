@@ -1,4 +1,4 @@
-function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FXY)
+function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM)
 
 if NUEL == 2; ELTI = 'line'; end
   
@@ -20,16 +20,32 @@ if NUEL == 2; ELTI = 'line'; end
   fprintf(FIDE,'ComponentNames "UY"  \n');
   fprintf(FIDE,'Values \n');
   TEM = [1:NNUD;UXY(:,1)'];
-  fprintf(FIDE,'%6i %+15.6e \n',TEM)
+  fprintf(FIDE,'%6i %+15.6e \n',TEM);
+  fprintf(FIDE,'End Values \n');
+  fprintf(FIDE,'# \n');
+  
+  fprintf(FIDE,'Result "Giro" "Load Analysis"  1  Scalar OnNodes \n');
+  fprintf(FIDE,'ComponentNames "Tetha"  \n');
+  fprintf(FIDE,'Values \n');
+  TEM = [1:NNUD;UXY(:,2)'];
+  fprintf(FIDE,'%6i %+15.6e \n',TEM);
   fprintf(FIDE,'End Values \n');
   fprintf(FIDE,'# \n');
   
     % Fuerzas en los nudos
-  fprintf(FIDE,'Result "Reacciones" "Load Analysis"  1  Scalar OnNodes \n');
+  fprintf(FIDE,'Result "Cortante" "Load Analysis"  1  Scalar OnNodes \n');
   fprintf(FIDE,'ComponentNames "V"  \n');
   fprintf(FIDE,'Values \n');
-  TEM = [1:NNUD;FXY(:,1)'];
-  fprintf(FIDE,'%6i %+15.6e \n',TEM)
+  TEM = [1:NNUD;FM(:,1)'];
+  fprintf(FIDE,'%6i %+15.6e \n',TEM);
+  fprintf(FIDE,'End Values \n');
+  fprintf(FIDE,'# \n');
+  
+    fprintf(FIDE,'Result "Momento" "Load Analysis"  1  Scalar OnNodes \n');
+  fprintf(FIDE,'ComponentNames "V"  \n');
+  fprintf(FIDE,'Values \n');
+  TEM = [1:NNUD;FM(:,2)'];
+  fprintf(FIDE,'%6i %+15.6e \n ',TEM);
   fprintf(FIDE,'End Values \n');
   fprintf(FIDE,'# \n');
   
