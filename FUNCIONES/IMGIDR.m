@@ -1,6 +1,7 @@
-function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM)
+function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM,NXIP)
 
 if NUEL == 2; ELTI = 'line'; end
+NPGAUSS = NXIP + 1;
   
   GIDM = strcat(ADAD,'.res'); % nombre archivo GiD post de los resultados
   FIDE = fopen(GIDM,'w'); % abrir archivo y establecer identificador
@@ -10,7 +11,8 @@ if NUEL == 2; ELTI = 'line'; end
   fprintf(FIDE,'# PEFICA-Octave postproceso para GiD \n');
   fprintf(FIDE,'# \n');
   fprintf(FIDE,'GaussPoints "GP" Elemtype %s \n',ELTI);
-  fprintf(FIDE,'Number of Gauss Points: %i \n',2);
+  fprintf(FIDE,'Number of Gauss Points: %i \n',NPGAUSS);
+  fprintf(FIDE,'Nodes included \n');
   fprintf(FIDE,'Natural Coordinates: Internal \n');
   fprintf(FIDE,'end gausspoints \n');
   fprintf(FIDE,'# \n');
@@ -20,7 +22,6 @@ if NUEL == 2; ELTI = 'line'; end
   fprintf(FIDE,'ComponentNames "UY"  \n');
   fprintf(FIDE,'Values \n');
   TEM = [1:NNUD;UXY(:,1)'];
-  fprintf(FIDE,'%6i %+15.6e \n',TEM);
   fprintf(FIDE,'End Values \n');
   fprintf(FIDE,'# \n');
   
@@ -33,19 +34,29 @@ if NUEL == 2; ELTI = 'line'; end
   fprintf(FIDE,'# \n');
   
     % Fuerzas en los nudos
-  fprintf(FIDE,'Result "Cortante" "Load Analysis"  1  Scalar OnNodes \n');
+  fprintf(FIDE,'Result "Cortante" "Load Analysis"  1  Vector OnGaussPoints "GP" \n');
   fprintf(FIDE,'ComponentNames "V"  \n');
   fprintf(FIDE,'Values \n');
-  TEM = [1:NNUD;FM(:,1)'];
-  fprintf(FIDE,'%6i %+15.6e \n',TEM);
+  %TEM = [1:NNUD;FM(:,1)'];  
+  for IELE = 1 : NELE
+      fprintf(FIDE,'%6i 0.00 %+15.6e \n',IELE,FM{IELE}(1,1));
+      for IINTE = 2 : NPGAUSS
+          fprintf(FIDE,'   0.00 %+15.6e \n',FM{IELE}(1,IINTE));
+      end
+  end 
+  %fprintf(FIDE,'%6i %+15.6e \n',TEM);
   fprintf(FIDE,'End Values \n');
   fprintf(FIDE,'# \n');
   
-    fprintf(FIDE,'Result "Momento" "Load Analysis"  1  Scalar OnNodes \n');
-  fprintf(FIDE,'ComponentNames "V"  \n');
+    fprintf(FIDE,'Result "Momento" "Load Analysis"  1  Vector OnGaussPoints "GP" \n');
+  fprintf(FIDE,'ComponentNames "M"  \n');
   fprintf(FIDE,'Values \n');
-  TEM = [1:NNUD;FM(:,2)'];
-  fprintf(FIDE,'%6i %+15.6e \n ',TEM);
+  for IELE = 1 : NELE
+      fprintf(FIDE,'%6i 0.00 %+15.6e 0.00\n',IELE,FM{IELE}(2,1));
+      for IINTE = 2 : NPGAUSS
+          fprintf(FIDE,'   0.00 %+15.6e 0.00 \n',FM{IELE}(2,IINTE));
+      end
+  end
   fprintf(FIDE,'End Values \n');
   fprintf(FIDE,'# \n');
   

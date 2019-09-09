@@ -1,7 +1,7 @@
 ### 
 # PEFICA-Octave postproceso para GiD 
 # 
-MESH "Viga_Euler-Bernoulli" dimension   2   Elemtype line   Nnode  2 
+MESH "Malla de la viga" dimension   2   Elemtype line   Nnode  2 
  
 coordinates 
      1 +8.0000e+00 +0.0000e+00

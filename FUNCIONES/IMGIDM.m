@@ -2,15 +2,7 @@ function IMGIDM(ADAD,NUEL,CAE,NNUD,XYZ,NELE,ELE)
 
 if NUEL == 2; ELTI = 'line'; end
 
-TIPE = CAE(3);
-switch TIPE
-    case 111
-        NAME = 'Viga_Euler-Bernoulli';
-    case 112
-        NAME = 'Viga Timoshenko con Ks 1 Punto de Gauss';
-    case 113
-        NAME = 'Viga Timoshenko con Ks 2 puntos de Gauss';
-end
+NAME = 'Malla de la viga'
 
 GIDM = strcat(ADAD,'.msh'); % nombre archivo GiD post de la malla
 FIDE = fopen(GIDM,'w'); % abrir archivo y establecer identificador
