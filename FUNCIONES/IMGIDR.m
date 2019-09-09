@@ -22,6 +22,7 @@ NPGAUSS = NXIP + 1;
   fprintf(FIDE,'ComponentNames "UY"  \n');
   fprintf(FIDE,'Values \n');
   TEM = [1:NNUD;UXY(:,1)'];
+  fprintf(FIDE,'%6i %+15.6e \n',TEM);
   fprintf(FIDE,'End Values \n');
   fprintf(FIDE,'# \n');
   

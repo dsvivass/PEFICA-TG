@@ -11,6 +11,23 @@ end gausspoints
 Result "Displacement" "Load Analysis"  1  Scalar OnNodes 
 ComponentNames "UY"  
 Values 
+     1   +0.000000e+00 
+     2   -2.124944e-03 
+     3   -4.119695e-03 
+     4   -5.863775e-03 
+     5   -7.248816e-03 
+     6   -8.180081e-03 
+     7   -8.577970e-03 
+     8   -8.468822e-03 
+     9   -7.970524e-03 
+    10   -7.153424e-03 
+    11   -6.092053e-03 
+    12   -4.848892e-03 
+    13   -3.513537e-03 
+    14   -2.215304e-03 
+    15   -1.094409e-03 
+    16   -3.019679e-04 
+    17   +0.000000e+00 
 End Values 
 # 
 Result "Giro" "Load Analysis"  1  Scalar OnNodes 
