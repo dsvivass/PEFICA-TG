@@ -73,12 +73,12 @@ function [FEL] = FBEAMT2(LELE,WLELE)
   % Entrada:  LELE:   longitud del elemento
   %           WELE:   carga distribuida uniforme
   % Salida:   FEL():  vector de fuerzas distribuida del elemento  
-  FEL = (1/2*WLELE*LELE)*[1 ; 0 ; 1 ; 0];
+  FEL = [0 0 0 0];
 end
 
 function [FEL] = FBEAMT1(LELE,WLELE)
   % Entrada:  LELE:   longitud del elemento
   %           WELE:   carga distribuida uniforme
   % Salida:   FEL():  vector de fuerzas distribuida del elemento  
-  FEL = (1/2*WLELE*LELE)*[1 ; 0 ; 1 ; 0];
+  FEL = [0 0 0 0];
 end

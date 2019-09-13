@@ -2,7 +2,7 @@ function IMGIDM(ADAD,NUEL,CAE,NNUD,XYZ,NELE,ELE)
 
 if NUEL == 2; ELTI = 'line'; end
 
-NAME = 'Malla de la viga'
+NAME = 'Malla de la viga';
 
 GIDM = strcat(ADAD,'.msh'); % nombre archivo GiD post de la malla
 FIDE = fopen(GIDM,'w'); % abrir archivo y establecer identificador
@@ -26,4 +26,5 @@ TEN = [1:NELE;ELER'];
 fprintf(FIDE,'%6i %6i %6i %6i\n',TEN);
 fprintf(FIDE,'end elements \n \n');
 
+status = fclose(FIDE);
 end

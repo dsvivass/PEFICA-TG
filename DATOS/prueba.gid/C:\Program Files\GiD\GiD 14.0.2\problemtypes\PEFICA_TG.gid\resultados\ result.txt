@@ -1,0 +1,6 @@
+TIPR = 11
+IMPR = 8
+CAT = [ ...
+length m^4 mass kg
+0
+]
