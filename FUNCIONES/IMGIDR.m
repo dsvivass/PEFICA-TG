@@ -1,4 +1,4 @@
-function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM,NXIP,NIT)
+function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM,NXIP,NIT,directorio)
 
 if NUEL == 2; ELTI = 'line'; end
 NPGAUSS = NXIP + 1;
@@ -162,5 +162,5 @@ fprintf(FIDE,'# \n');
 
 
 status = fclose(FIDE);
-
+cd(directorio);
 end

@@ -1,5 +1,6 @@
-function IMGIDM(ADAD,NUEL,CAE,NNUD,XYZ,NELE,ELE)
+function IMGIDM(ADAD,NUEL,CAE,NNUD,XYZ,NELE,ELE,diractual)
 
+cd(diractual);
 if NUEL == 2; ELTI = 'line'; end
 
 NAME = 'Malla de la viga';
