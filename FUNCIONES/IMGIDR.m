@@ -1,8 +1,9 @@
-function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM,NXIP,NIT,directorio)
+function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM,NXIP,NIT,diractual,directorio)
 
+cd(diractual);
 if NUEL == 2; ELTI = 'line'; end
 NPGAUSS = NXIP + 1;
-if NIT == 1
+if NIT == 0 || NIT == 1
     GIDM = strcat(ADAD,'.res'); % nombre archivo GiD post de los resultados
     FIDE = fopen(GIDM,'w'); % abrir archivo y establecer identificador
     fprintf(FIDE,'Gid Post Results File 1.0 \n');
@@ -162,5 +163,6 @@ fprintf(FIDE,'# \n');
 
 
 status = fclose(FIDE);
+system('open -a GiD-14.0.1.app PUNI20_actualizado.m.res');
 cd(directorio);
 end

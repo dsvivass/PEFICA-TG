@@ -1,4 +1,4 @@
-function IMGIDM(ADAD,NUEL,CAE,NNUD,XYZ,NELE,ELE,diractual)
+function IMGIDM(ADAD,NUEL,CAE,NNUD,XYZ,NELE,ELE,diractual,directorio)
 
 cd(diractual);
 if NUEL == 2; ELTI = 'line'; end
@@ -28,4 +28,5 @@ fprintf(FIDE,'%6i %6i %6i %6i\n',TEN);
 fprintf(FIDE,'end elements \n \n');
 
 status = fclose(FIDE);
+cd(directorio);
 end

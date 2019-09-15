@@ -1,29 +1,37 @@
-function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM,NXIP,NIT)
+function IMGIDR(ADAD,NUEL,CAE,NNUD,UXY,NELE,ELE,FM,NXIP,NIT,diractual,directorio)
 
+cd(diractual);
 if NUEL == 2; ELTI = 'line'; end
 NPGAUSS = NXIP + 1;
-if NIT == 1
+if NIT == 0
     GIDM = strcat(ADAD,'.res'); % nombre archivo GiD post de los resultados
     FIDE = fopen(GIDM,'w'); % abrir archivo y establecer identificador
+    fprintf(FIDE,'Gid Post Results File 1.0 \n');
+    fprintf(FIDE,'### \n');
+    fprintf(FIDE,'# PEFICA-Octave postproceso para GiD \n');
+    fprintf(FIDE,'# \n');
+    fprintf(FIDE,'GaussPoints "GP" Elemtype %s \n',ELTI);
+    fprintf(FIDE,'Number of Gauss Points: %i \n',NPGAUSS);
+    fprintf(FIDE,'Nodes included \n');
+    fprintf(FIDE,'Natural Coordinates: Internal \n');
+    fprintf(FIDE,'end gausspoints \n');
+    fprintf(FIDE,'# \n');
 else
     GIDM = strcat(ADAD,'.res'); % nombre archivo GiD post de los resultados
     FIDE = fopen(GIDM,'a+'); % abrir archivo y establecer identificador
 end
 
-fprintf(FIDE,'Gid Post Results File 1.0 \n');
-fprintf(FIDE,'### \n');
-fprintf(FIDE,'# PEFICA-Octave postproceso para GiD \n');
-fprintf(FIDE,'# \n');
-fprintf(FIDE,'GaussPoints "GP" Elemtype %s \n',ELTI);
-fprintf(FIDE,'Number of Gauss Points: %i \n',NPGAUSS);
-fprintf(FIDE,'Nodes included \n');
-fprintf(FIDE,'Natural Coordinates: Internal \n');
-fprintf(FIDE,'end gausspoints \n');
-fprintf(FIDE,'# \n');
+switch CAE(1,3)
+    case 111
+        TANA = 'Euler-Bernoulli';
+    case 112
+        TANA = 'Timoshenko_1PG';
+    case 113
+        TANA = 'Timoshenko_2PG';
+end
 
-% desplazamientos de los nudos 
-switch
-fprintf(FIDE,'Result "Displacement" "Load Analysis"  1  Scalar OnNodes \n');
+% desplazamientos de los nudos
+fprintf(FIDE,'Result "Displacement" "%s"  1  Scalar OnNodes \n',TANA);
 fprintf(FIDE,'ComponentNames "UY"  \n');
 fprintf(FIDE,'Values \n');
 TEM = [1:NNUD;UXY(:,1)'];
@@ -31,7 +39,7 @@ fprintf(FIDE,'%6i %+15.6e \n',TEM);
 fprintf(FIDE,'End Values \n');
 fprintf(FIDE,'# \n');
 
-fprintf(FIDE,'Result "Giro" "Load Analysis"  1  Scalar OnNodes \n');
+fprintf(FIDE,'Result "Giro" "%s"  1  Scalar OnNodes \n',TANA);
 fprintf(FIDE,'ComponentNames "Tetha"  \n');
 fprintf(FIDE,'Values \n');
 TEM = [1:NNUD;UXY(:,2)'];
@@ -40,7 +48,7 @@ fprintf(FIDE,'End Values \n');
 fprintf(FIDE,'# \n');
 
 % Fuerzas en los nudos
-fprintf(FIDE,'Result "Cortante" "Load Analysis"  1  Vector OnGaussPoints "GP" \n');
+fprintf(FIDE,'Result "Cortante" "%s"  1  Vector OnGaussPoints "GP" \n',TANA);
 fprintf(FIDE,'ComponentNames "V"  \n');
 fprintf(FIDE,'Values \n');
 %TEM = [1:NNUD;FM(:,1)'];
@@ -54,7 +62,7 @@ end
 fprintf(FIDE,'End Values \n');
 fprintf(FIDE,'# \n');
 
-fprintf(FIDE,'Result "Momento" "Load Analysis"  1  Vector OnGaussPoints "GP" \n');
+fprintf(FIDE,'Result "Momento" "%s"  1  Vector OnGaussPoints "GP" \n',TANA);
 fprintf(FIDE,'ComponentNames "M"  \n');
 fprintf(FIDE,'Values \n');
 for IELE = 1 : NELE
@@ -155,5 +163,6 @@ fprintf(FIDE,'# \n');
 
 
 status = fclose(FIDE);
-
+cd(directorio);
+system(['open OU']);
 end
