@@ -131,12 +131,12 @@ NIT = 1;
 
 
 
-diractual = "DATOS/holamundo.gid"
+diractual = "DATOS/holamundo.gid";
 NIT = 1;
 CAT = [...
 21500000000.000000 0.001600 111.000000 0.120000 0.830000 0.200000 ;
 ];
-diractual = "DATOS/holamundo.gid"
+diractual = "DATOS/holamundo.gid";
 NIT = 2;
 CAT = [...
 21500000000.000000 0.001600 112.000000 0.120000 0.830000 0.200000 ;
