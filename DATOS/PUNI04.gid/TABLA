@@ -1,0 +1,4 @@
+ResultRangesTable "Tabla de resultados"
+0.0 - 0.699999988079071 : "Normal"
+0.699999988079071 - 0.8999999761581421 : "Too much"
+End ResultRangesTable

@@ -8,6 +8,7 @@ Nodes included
 Natural Coordinates: Internal 
 end gausspoints 
 # 
+# 
 Result "Displacement" "Euler-Bernoulli"  1  Scalar OnNodes 
 ComponentNames "UY"  
 Values 

@@ -16,6 +16,12 @@ if NIT == 0 || NIT == 1
     fprintf(FIDE,'Natural Coordinates: Internal \n');
     fprintf(FIDE,'end gausspoints \n');
     fprintf(FIDE,'# \n');
+    fprintf(FIDE,'# \n');
+    fprintf(FIDE,'ResultRangesTable "Tabla de resultados"\n');
+    fprintf(FIDE,'  0.3 - 0.7: "Normal"\n');
+    fprintf(FIDE,'  0.7 - 0.9: "Too much"\n');
+    fprintf(FIDE,'End ResultRangesTable\n');
+    fprintf(FIDE,'# \n');
 else
     GIDM = strcat(ADAD,'.res'); % nombre archivo GiD post de los resultados
     FIDE = fopen(GIDM,'a+'); % abrir archivo y establecer identificador
@@ -33,6 +39,7 @@ end
 % desplazamientos de los nudos
 fprintf(FIDE,'Result "Displacement" "%s"  1  Scalar OnNodes \n',TANA);
 fprintf(FIDE,'ComponentNames "UY"  \n');
+fprintf(FIDE,'ResultRangesTable "Tabla de resultados"  \n');
 fprintf(FIDE,'Values \n');
 TEM = [1:NNUD;UXY(:,1)'];
 fprintf(FIDE,'%6i %+15.6e \n',TEM);
@@ -163,6 +170,5 @@ fprintf(FIDE,'# \n');
 
 
 status = fclose(FIDE);
-system('open -a GiD-14.0.1.app PUNI20_actualizado.m.res');
 cd(directorio);
 end
