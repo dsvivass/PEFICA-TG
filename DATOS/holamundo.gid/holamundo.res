@@ -9,8 +9,14 @@ Natural Coordinates: Internal
 end gausspoints 
 # 
 # 
+ResultRangesTable "Tabla de resultados"
+  0.3 - 0.7: "Normal"
+  0.7 - 0.9: "Too much"
+End ResultRangesTable
+# 
 Result "Displacement" "Euler-Bernoulli"  1  Scalar OnNodes 
 ComponentNames "UY"  
+ResultRangesTable "Tabla de resultados"  
 Values 
      1   -1.741158e-02 
      2   -1.620074e-02 
