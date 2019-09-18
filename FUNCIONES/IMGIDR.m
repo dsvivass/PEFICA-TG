@@ -79,8 +79,6 @@ for IELE = 1 : NELE
     end
 end
 fprintf(FIDE,'End Values \n');
-fprintf(FIDE,'# \n');
-
 %
 %   % esfuerzos en los elementos
 %   fprintf(FIDE,'Result "Stress" "Load Analysis" 1 Vector OnGaussPoints "GP" \n');
