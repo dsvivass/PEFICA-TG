@@ -1,0 +1,16 @@
+### 
+# PEFICA-Octave postproceso para GiD 
+# 
+MESH "Malla de la viga" dimension   2   Elemtype line   Nnode  2 
+ 
+coordinates 
+     1 +0.0000e+00 +0.0000e+00
+     2 +3.0000e+00 +0.0000e+00
+     3 +5.0000e+00 +0.0000e+00
+end coordinates 
+ 
+elements 
+     1      1      2      1
+     2      2      3      1
+end elements 
+ 
